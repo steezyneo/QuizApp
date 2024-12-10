@@ -32,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Questions> questionList;
     private int questionCounter;
-    private int questionTotalCount;
+    private int totelQuestionCount;
+    private Questions currentQuestion;
+    private boolean isAnswered;
+
 
 
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupUI();
+        fetchDB();
     }
 
     private void setupUI() {
@@ -58,5 +62,9 @@ public class MainActivity extends AppCompatActivity {
         option3 = findViewById(R.id.option3);
         option4 = findViewById(R.id.option4);
         next = findViewById(R.id.next);
+    }
+    private void fetchDB(){
+        QuizDbHelper dbHelper = new QuizDbHelper(this);
+        questionList = dbHelper.getAllQuestions();
     }
 }
